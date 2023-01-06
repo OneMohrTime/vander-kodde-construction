@@ -312,6 +312,8 @@ AddDefaultCharset utf-8
 
     # (4)
     # RewriteBase /
+    RewriteCond %{HTTP_HOST} ^(www\.)?example\.com$ [NC]
+    RewriteRule ^(.*)$ https://www.vanderkoddeconstruction.com/ [R=302,L]
 
     # (5)
     # RewriteOptions <options>
@@ -333,15 +335,15 @@ AddDefaultCharset utf-8
 #     https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
 #     https://tools.ietf.org/html/draft-ietf-acme-acme-12
 
-# <IfModule mod_rewrite.c>
-#    RewriteEngine On
-#    RewriteCond %{HTTPS} !=on
-#    # (1)
-#    # RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
-#    # RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[\w-]+$
-#    # RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-#    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-# </IfModule>
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   RewriteCond %{HTTPS} !=on
+   # (1)
+   # RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
+   # RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[\w-]+$
+   # RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
 
 # ----------------------------------------------------------------------
 # | Suppressing the `www.` at the beginning of URLs                    |
@@ -366,23 +368,23 @@ AddDefaultCharset utf-8
 #
 #     https://github.com/h5bp/server-configs-apache/issues/52
 
-<IfModule mod_rewrite.c>
+# <IfModule mod_rewrite.c>
 
-    RewriteEngine On
+#     RewriteEngine On
 
-    # (1)
-    RewriteCond %{HTTPS} =on
-    RewriteRule ^ - [E=PROTO:https]
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^ - [E=PROTO:http]
+#     # (1)
+#     RewriteCond %{HTTPS} =on
+#     RewriteRule ^ - [E=PROTO:https]
+#     RewriteCond %{HTTPS} !=on
+#     RewriteRule ^ - [E=PROTO:http]
 
-    # (2)
-    # RewriteCond %{HTTPS} !=on
+#     # (2)
+#     # RewriteCond %{HTTPS} !=on
 
-    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
+#     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#     RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
 
-</IfModule>
+# </IfModule>
 
 # ----------------------------------------------------------------------
 # | Forcing the `www.` at the beginning of URLs                        |
@@ -410,25 +412,25 @@ AddDefaultCharset utf-8
 # Be aware that the following might not be a good idea if you use "real"
 # subdomains for certain parts of your website.
 
-# <IfModule mod_rewrite.c>
+<IfModule mod_rewrite.c>
 
-#     RewriteEngine On
+    RewriteEngine On
 
-#     # (1)
-#     RewriteCond %{HTTPS} =on
-#     RewriteRule ^ - [E=PROTO:https]
-#     RewriteCond %{HTTPS} !=on
-#     RewriteRule ^ - [E=PROTO:http]
+    # (1)
+    RewriteCond %{HTTPS} =on
+    RewriteRule ^ - [E=PROTO:https]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ - [E=PROTO:http]
 
-#     # (2)
-#     # RewriteCond %{HTTPS} !=on
+    # (2)
+    # RewriteCond %{HTTPS} !=on
 
-#     RewriteCond %{HTTP_HOST} !^www\. [NC]
-#     RewriteCond %{SERVER_ADDR} !=127.0.0.1
-#     RewriteCond %{SERVER_ADDR} !=::1
-#     RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    RewriteCond %{HTTP_HOST} !^www\. [NC]
+    RewriteCond %{SERVER_ADDR} !=127.0.0.1
+    RewriteCond %{SERVER_ADDR} !=::1
+    RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# </IfModule>
+</IfModule>
 
 # ######################################################################
 # # SECURITY                                                           #
