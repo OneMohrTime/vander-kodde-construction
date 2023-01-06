@@ -312,8 +312,8 @@ AddDefaultCharset utf-8
 
     # (4)
     # RewriteBase /
-    RewriteCond %{HTTP_HOST} ^(www\.)?example\.com$ [NC]
-    RewriteRule ^(.*)$ https://www.vanderkoddeconstruction.com/ [R=302,L]
+    RewriteCond %{HTTP_HOST} ^(www\.)?vanderkoddeconstruction\.com$ [NC]
+    RewriteRule ^(.*)$ https://www.vanderkoddeconstruction.com/new-website.html [R=302,L]
 
     # (5)
     # RewriteOptions <options>
