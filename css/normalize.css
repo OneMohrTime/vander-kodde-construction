@@ -347,3 +347,11 @@ template {
 [hidden] {
   display: none;
 }
+
+/**
+ * Remove margins from figure tags
+ */
+
+figure {
+  margin: 0;
+}

@@ -11,10 +11,46 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+:root {
+  --black: #25242c;
+  --dark-gray: #4a4b49;
+  --gray: #70716e;
+  --light-gray: #999a96;
+  --white: #f0f1eb;
+  --orange: #c56a49;
+}
+
 html {
-  color: #222;
   font-size: 1em;
-  line-height: 1.4;
+  line-height: 1.4em;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: "League Spartan", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+address {
+  margin-bottom: 1em;
+  font-style: normal;
 }
 
 /*
@@ -28,12 +64,14 @@ html {
  */
 
 ::-moz-selection {
-  background: #b3d4fc;
+  background: var(--dark-gray);
+  color: var(--white);
   text-shadow: none;
 }
 
 ::selection {
-  background: #b3d4fc;
+  background: var(--dark-gray);
+  color: var(--white);
   text-shadow: none;
 }
 
@@ -86,6 +124,86 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+header {
+  max-width: 375px;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+figure {
+  margin: 0;
+}
+
+article {
+  max-width: calc(100% - 88px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+  padding: 2em;
+  border-radius: 4px;
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.logo {
+  display: block;
+  max-width: 100%;
+}
+
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-autoheight .swiper-wrapper {
+  align-items: center;
+}
+
+.swiper-slide-link {
+  display: none;
+}
+
+.mySwiper {
+  max-width: calc(100% - 88px);
+}
+
+.mySwiper2 {
+  max-width: 100%;
+  margin-bottom: 1em;
+}
+
+.swiper-slide img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.mySwiper .swiper-slide {
+  position: relative;
+  cursor: pointer;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  --swiper-navigation-color: var(--white);
+  top: 0;
+  width: 44px;
+  height: 100%;
+  margin-top: 0;
+  background-color: var(--black);
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+
+.swiper-button-next {
+  right: 0;
+}
 
 /* ==========================================================================
    Helper classes
@@ -176,7 +294,139 @@ textarea {
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+
+  main {
+    display: flex;
+    align-items: center;
+    padding-left: 2em;
+  }
+
+  article {
+    flex: 0 0 40%;
+    max-width: 40%;
+    margin: 0;
+    z-index: 2;
+  }
+
+  aside {
+    flex: 0 0 60%;
+    max-width: 60%;
+    z-index: 1;
+  }
+
+}
+
+@media only screen and (min-width: 62.5em) {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    margin-top: 2em;
+  }
+
+  header {
+    position: absolute;
+    top: 1em;
+    left: 65px;
+    max-width: 450px;
+    margin: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    z-index: 100;
+  }
+
+  figure {
+    position: relative;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 0 rgba(37, 36, 44, 0.7);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.7);
+    background-color: var(--black);
+  }
+
+  main {
+    position: relative;
+    display: block;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3em;
+    padding-right: 1em;
+  }
+
+  aside {
+    max-width: 80%;
+    margin-left: auto;
+  }
+
+  article {
+    position: absolute;
+    top: 120px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 0 10px 0 rgba(37, 36, 44, 0.7);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.7);
+  }
+
+  .mySwiper2 {
+    padding-left: 44px;
+    padding-left: 0;
+    padding-right: 44px;
+  }
+
+  .swiper-slide-link {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: block;
+    max-width: 44px;
+    max-height: 44px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--black);
+    color: var(--white);
+  }
+
+  .swiper-slide-link svg,
+  .swiper-slide-link path {
+    display: block;
+    max-width: 28px;
+    max-height: 28px;
+  }
+
+}
+
+@media only screen and (min-width: 75em) {
+
+  main {
+    max-width: 1440px;
+  }
+
+  header {
+    left: 135px;
+    max-width: 500px;
+    padding: 0;
+  }
+
+  article {
+    max-width: 500px;
+    font-size: 20px;
+    line-height: 1.4em;
+  }
+
+}
+
+@media only screen and (min-width: 1440px) {
+
+  header {
+    left: calc(((100vw - 1440px) / 2) + 135px);
+  }
+
 }
 
 @media print,
